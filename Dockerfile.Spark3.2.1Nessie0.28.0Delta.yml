@@ -1,5 +1,7 @@
 From alpine:3.15.1
 apk update && apk update && apk add maven
 RUN wget spark 3.2.1
-RUN ./build/mvn -DskipTests clean package
+
+RUN export MAVEN_OPTS="-Xss256m -Xmx25g -XX:ReservedCodeCacheSize=2g" && ./dev/make-distribution.sh --name ignalina-spark --pip --tgz -Dhadoop.version=3.3.1 -DskipTests
+
 
