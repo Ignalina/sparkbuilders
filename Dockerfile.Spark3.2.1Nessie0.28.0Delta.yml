@@ -3,7 +3,7 @@ ENV SPARK_URL="https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.15/community' >> /etc/apk/repositories 
 RUN cd /opt && wget ${SPARK_URL} && tar -zxf spark-3.2.1-bin-hadoop3.2.tgz
 
-apk update && apk add maven wget
+RUN apk update && apk add maven wget
 RUN wget spark 3.2.1
 
 RUN export MAVEN_OPTS="-Xss256m -Xmx25g -XX:ReservedCodeCacheSize=2g" && cd /opt/spark-3.2.1 &&./dev/make-distribution.sh --name ignalina-spark --pip --tgz -Dhadoop.version=3.3.1 -DskipTests
