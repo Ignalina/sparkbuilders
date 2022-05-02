@@ -5,5 +5,5 @@ RUN cd /opt && wget ${SPARK_URL} && tar -zxf spark-3.2.1.tgz
 
 RUN apk update && apk add maven wget bash
 
-RUN export MAVEN_OPTS="-Xss256m -Xmx25g -XX:ReservedCodeCacheSize=2g" && cd /opt/spark-3.2.1 &&./dev/make-distribution.sh --name ignalina-spark --pip --tgz -Dhadoop.version=3.3.1 -DskipTests
+RUN cd /opt/spark-3.2.1 && MAVEN_OPTS="-Xss256m -Xmx25g -XX:ReservedCodeCacheSize=2g" ./dev/make-distribution.sh --name ignalina-spark --pip --tgz -Dhadoop.version=3.3.1 -DskipTests
 
